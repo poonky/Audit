@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Audit Fee Calculator</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 500px; margin: auto; }
+    input, button { width: 100%; padding: 10px; margin: 10px 0; font-size: 16px; }
+    label { font-weight: bold; }
+    .result { font-size: 18px; margin-top: 15px; }
+  </style>
+</head>
+<body>
+  <h2>Audit Fee Calculator</h2>
+  <label for="b1">Gross Assets</label>
+  <input type="number" id="b1" placeholder="Enter Gross Assets">
+
+  <label for="b2">Turnover</label>
+  <input type="number" id="b2" placeholder="Enter Turnover">
+
+  <label for="b3">Expenditures</label>
+  <input type="number" id="b3" placeholder="Enter Expenditures">
+
+  <button onclick="calculate()">Calculate</button>
+
+  <div class="result" id="b6"></div>
+  <div class="result" id="b7"></div>
+  <div class="result" id="b8"></div>
+  <div class="result" id="b10"></div>
+
+  <script>
+    function calcFee(value) {
+      if (value <= 0) return 0;
+      if (value >= 5000000) return 7754.5 + (value - 5000000) * 0.00094;
+      if (value >= 2500000) return 5254.5 + (value - 2500000) * 0.001;
+      if (value >= 1000000) return 3379.5 + (value - 1000000) * 0.00125;
+      if (value >= 500000) return 2439.5 + (value - 500000) * 0.00188;
+      if (value >= 250000) return 1657 + (value - 250000) * 0.00313;
+      if (value >= 100000) return 1000 + (value - 100000) * 0.00438;
+      return 800;
+    }
+
+    function calcExpFee(value) {
+      if (value >= 2000001) return 10625 + (value - 2000001) * 0.00125;
+      if (value >= 1000000) return 8125 + (value - 1000000) * 0.0025;
+      if (value >= 200000) return 3125 + (value - 200000) * 0.00625;
+      if (value >= 50000) return 1250 + (value - 50000) * 0.0125;
+      return value * 0.025;
+    }
+
+    function calculate() {
+      const b1 = parseFloat(document.getElementById('b1').value) || 0;
+      const b2 = parseFloat(document.getElementById('b2').value) || 0;
+      const b3 = parseFloat(document.getElementById('b3').value) || 0;
+
+      const b6 = calcFee(b1);
+      const b7 = calcFee(b2);
+      const b8 = calcExpFee(b3);
+      const b10 = Math.max(b6, b7, b8);
+
+      document.getElementById('b6').innerText = `Gross Assets Fee: RM ${b6.toFixed(2)}`;
+      document.getElementById('b7').innerText = `Turnover Fee: RM ${b7.toFixed(2)}`;
+      document.getElementById('b8').innerText = `Expenditures Fee: RM ${b8.toFixed(2)}`;
+      document.getElementById('b10').innerText = `Recommended Fee: RM ${b10.toFixed(2)}`;
+    }
+  </script>
+</body>
+</html>
