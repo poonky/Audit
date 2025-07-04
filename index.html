@@ -9,6 +9,21 @@
     input, button { width: 100%; padding: 10px; margin: 10px 0; font-size: 16px; }
     label { font-weight: bold; }
     .result { font-size: 18px; margin-top: 15px; }
+    .onedrive-button {
+      display: inline-block;
+      background-color: #0078d4;
+      color: white;
+      text-decoration: none;
+      text-align: center;
+      padding: 12px;
+      margin-top: 20px;
+      border-radius: 6px;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+    .onedrive-button:hover {
+      background-color: #005a9e;
+    }
   </style>
 </head>
 <body>
@@ -28,6 +43,14 @@
   <div class="result" id="b7"></div>
   <div class="result" id="b8"></div>
   <div class="result" id="b10"></div>
+
+  <a
+    class="onedrive-button"
+    href="https://1drv.ms/f/c/450974e4b348a81c/EmW5kcqb6wZAo_2IOKFPZeoBSk_ics6BPSTcDgoYuNhABg"
+    target="_blank"
+  >
+    Open My OneDrive Folder
+  </a>
 
   <script>
     function calcFee(value) {
